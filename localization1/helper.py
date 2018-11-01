@@ -24,7 +24,7 @@ def shift_list(l, n):
 	d.rotate(1)
 	return list(d)
 
-def show_graphical(robotmap, beliefs):
+def show_diagram(robotmap, beliefs):
     import matplotlib.pyplot as plt
     import numpy as np
     
