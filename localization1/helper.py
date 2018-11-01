@@ -1,15 +1,15 @@
 import io
 
-def ausgabe(karte, vermutungen):
+def show(robotmap, beliefs):
 	buf1 = io.StringIO()
-	print("   Karte:", end='', file=buf1)
-	print(*(map('{0[1]:^7.2}'.format, enumerate(karte))), sep="|", end='', file=buf1)
+	print("     Map:", end='', file=buf1)
+	print(*(map('{0[1]:^7.2}'.format, enumerate(robotmap))), sep="|", end='', file=buf1)
 	s1 = buf1.getvalue()
 	len1 = len(s1)
 
 	buf2 = io.StringIO()
 	print("Position:", end='', file=buf2)
-	print(*(map('{0[1]:^7.2}'.format, enumerate(vermutungen))), sep="|", end='', file=buf2)
+	print(*(map('{0[1]:^7.2}'.format, enumerate(beliefs))), sep="|", end='', file=buf2)
 	s2 = buf2.getvalue()
 	len2 = len(s2)
 	
@@ -24,19 +24,19 @@ def shift_list(l, n):
 	d.rotate(1)
 	return list(d)
 
-def ausgabe_grafisch(karte, vermutungen):
+def show_graphical(robotmap, beliefs):
     import matplotlib.pyplot as plt
     import numpy as np
     
-    assert len(vermutungen) == len(karte)
+    assert len(robotmap) == len(beliefs)
     x_labels = []
     x_indices = []
-    for index, zellfarbe in enumerate(karte):
-        x_labels.append(str(index+1) + ' - ' + zellfarbe)
+    for index, cellcolor in enumerate(robotmap):
+        x_labels.append(str(index+1) + ' - ' + cellcolor)
         x_indices.append(index)
-    plt.xlabel('Position - Zellfarbe')
-    plt.ylabel('Wahrscheinlichkeit')
-    plt.title('Wahrscheinlichkeit der Position des Roboters')
-    plt.bar(x_labels, vermutungen, width=0.7, edgecolor='black')
+    plt.xlabel('Position - Cell color')
+    plt.ylabel('Probability')
+    plt.title('Probability of Robot's Position')
+    plt.bar(x_labels, beliefs, width=0.7, edgecolor='black')
     plt.xticks(np.arange(min(x_indices), max(x_indices)+1, 1))
     plt.show()
