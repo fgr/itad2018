@@ -36,7 +36,7 @@ def show_graphical(robotmap, beliefs):
         x_indices.append(index)
     plt.xlabel('Position - Cell color')
     plt.ylabel('Probability')
-    plt.title('Probability of Robot's Position')
+    plt.title("Probability of Robot's Position")
     plt.bar(x_labels, beliefs, width=0.7, edgecolor='black')
     plt.xticks(np.arange(min(x_indices), max(x_indices)+1, 1))
     plt.show()
